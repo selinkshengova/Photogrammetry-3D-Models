@@ -39,25 +39,25 @@ const MODEL_NAMES = {
 const MODEL_URLS = {
 
     'owl.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0.0/owl.glb',
+    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/owl.glb',
 
     'pharaoh.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0.0/pharaoh.glb',
+    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/pharaoh.glb',
 
     'hoopoe.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0.0/hoopoe.glb',
+    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/hoopoe.glb',
 
     'donkey.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0.0/donkey.glb',
+    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/donkey.glb',
 
     'eagle.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0.0/eagle.glb',
+    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/eagle.glb',
 
     'lion.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0.0/lion.glb',
+    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/lion.glb',
 
     'dog.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0.0/dog.glb'
+    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/dog.glb'
 
 };
 
