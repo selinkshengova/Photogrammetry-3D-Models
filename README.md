@@ -4,7 +4,7 @@ A web-based viewer for 3D models created using photogrammetry.
 
 ## Live Demo
 
-https://selinkshengova.github.io/Photogrammetry-3D-Website/
+https://selinkshengova.github.io/Photogrammetry-3D-Models/
 
 ## Technologies
 
