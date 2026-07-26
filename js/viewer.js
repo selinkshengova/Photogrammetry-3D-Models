@@ -1,150 +1,193 @@
 /* =========================================================
    INTERACTIVE 3D VIEWER - viewer.js
-   Diploma Project 2026
-   GitHub Releases Model Loader Fix
+   GitHub Pages Model Loader Version
 ========================================================= */
 
 
 /* ---------------- DOM ELEMENTS ---------------- */
 
-const viewer = document.getElementById('viewer');
-const loader = document.getElementById('loader');
+const viewer = document.getElementById("viewer");
+const loader = document.getElementById("loader");
 
-const modelTitle = document.getElementById('modelTitle');
-const modelName = document.getElementById('modelName');
-const statusText = document.getElementById('status');
+const modelTitle = document.getElementById("modelTitle");
+const modelName = document.getElementById("modelName");
+const statusText = document.getElementById("status");
 
-const resetCameraBtn = document.getElementById('resetCamera');
-const rotateBtn = document.getElementById('rotateButton');
-const fullscreenBtn = document.getElementById('fullscreenBtn');
+const resetCameraBtn = document.getElementById("resetCamera");
+const rotateBtn = document.getElementById("rotateButton");
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+
 
 
 /* ---------------- MODEL NAMES ---------------- */
 
 const MODEL_NAMES = {
 
-    'owl.glb': 'Бухал',
-    'pharaoh.glb': 'Фараон',
-    'hoopoe.glb': 'Папуняк',
-    'donkey.glb': 'Магаре',
-    'eagle.glb': 'Орел',
-    'lion.glb': 'Лъв',
-    'dog.glb': 'Куче'
+    "owl.glb": "Бухал",
+    "pharaoh.glb": "Фараон",
+    "hoopoe.glb": "Папуняк",
+    "donkey.glb": "Магаре",
+    "eagle.glb": "Орел",
+    "lion.glb": "Лъв",
+    "dog.glb": "Куче"
 
 };
 
 
-/* ---------------- GITHUB RELEASE MODEL LINKS ---------------- */
+
+/* ---------------- MODEL PATHS ---------------- */
 
 const MODEL_URLS = {
 
-    'owl.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/owl.glb',
 
-    'pharaoh.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/pharaoh.glb',
+    "owl.glb":
+    "https://selinkshengova.github.io/Photogrammetry-3D-Models/models/owl.glb",
 
-    'hoopoe.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/hoopoe.glb',
 
-    'donkey.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/donkey.glb',
+    "pharaoh.glb":
+    "https://selinkshengova.github.io/Photogrammetry-3D-Models/models/pharaoh.glb",
 
-    'eagle.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/eagle.glb',
 
-    'lion.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/lion.glb',
+    "hoopoe.glb":
+    "https://selinkshengova.github.io/Photogrammetry-3D-Models/models/hoopoe.glb",
 
-    'dog.glb':
-    'https://github.com/selinkshengova/Photogrammetry-3D-Models/releases/download/v1.0/dog.glb'
+
+    "donkey.glb":
+    "https://selinkshengova.github.io/Photogrammetry-3D-Models/models/donkey.glb",
+
+
+    "eagle.glb":
+    "https://selinkshengova.github.io/Photogrammetry-3D-Models/models/eagle.glb",
+
+
+    "lion.glb":
+    "https://selinkshengova.github.io/Photogrammetry-3D-Models/models/lion.glb",
+
+
+    "dog.glb":
+    "https://selinkshengova.github.io/Photogrammetry-3D-Models/models/dog.glb"
 
 };
 
 
 
-/* ---------------- READ URL PARAMETER ---------------- */
-
-const params = new URLSearchParams(window.location.search);
-
-const modelFile = params.get('model');
 
 
-if (modelFile && MODEL_URLS[modelFile]) {
+/* ---------------- LOAD MODEL ---------------- */
 
 
-    // Load model from GitHub Release
+const params =
+new URLSearchParams(window.location.search);
 
-    viewer.src = MODEL_URLS[modelFile];
+
+const modelFile =
+params.get("model");
+
+
+
+if(modelFile && MODEL_URLS[modelFile]){
+
+
+    const modelURL =
+    MODEL_URLS[modelFile];
+
+
+    console.log(
+        "Loading model:",
+        modelURL
+    );
+
+
+    viewer.src =
+    modelURL;
+
 
 
     const title =
-        MODEL_NAMES[modelFile] ||
-        modelFile.replace('.glb','');
+    MODEL_NAMES[modelFile]
+    ||
+    modelFile.replace(".glb","");
 
-
-    modelTitle.textContent = title;
-
-    modelName.textContent = title;
-
-    document.title =
-        `${title} | Interactive 3D Viewer`;
-
-
-    statusText.textContent =
-        "Loading...";
-
-    statusText.style.color =
-        "#F59E0B";
-
-
-}
-
-else {
 
 
     modelTitle.textContent =
-        "Няма избран модел";
+    title;
 
 
     modelName.textContent =
-        "Няма избран модел";
+    title;
+
+
+    document.title =
+    `${title} | Interactive 3D Viewer`;
+
 
 
     statusText.textContent =
-        "No model selected";
+    "Loading...";
 
 
     statusText.style.color =
-        "#EF4444";
+    "#F59E0B";
+
+
+
+}
+
+else{
+
+
+    modelTitle.textContent =
+    "Няма избран модел";
+
+
+    modelName.textContent =
+    "Няма избран модел";
+
+
+    statusText.textContent =
+    "No model selected";
+
+
+    statusText.style.color =
+    "#EF4444";
 
 }
 
 
 
-/* ---------------- LOADER ---------------- */
 
 
-viewer.addEventListener('load',()=>{
+/* ---------------- MODEL LOADED ---------------- */
 
 
-    loader.style.opacity = "0";
+viewer.addEventListener(
+"load",
+()=>{
+
+
+    loader.style.opacity =
+    "0";
 
 
     setTimeout(()=>{
 
-        loader.style.display="none";
+
+        loader.style.display =
+        "none";
+
 
     },500);
 
 
 
     statusText.textContent =
-        "Ready";
+    "Ready";
 
 
     statusText.style.color =
-        "#22C55E";
+    "#22C55E";
+
 
 
     saveInitialCamera();
@@ -154,15 +197,29 @@ viewer.addEventListener('load',()=>{
 
 
 
-viewer.addEventListener('error',()=>{
+
+
+/* ---------------- MODEL ERROR ---------------- */
+
+
+viewer.addEventListener(
+"error",
+()=>{
+
+
+    console.error(
+        "Model loading failed:",
+        viewer.src
+    );
 
 
     statusText.textContent =
-        "Error";
+    "Error";
 
 
     statusText.style.color =
-        "#EF4444";
+    "#EF4444";
+
 
 
     loader.innerHTML = `
@@ -172,8 +229,8 @@ viewer.addEventListener('error',()=>{
             <h2>❌ Грешка</h2>
 
             <p>
-            Моделът не можа да бъде зареден.
-            Проверете GitHub Release файла.
+            Моделът не може да бъде зареден.
+            Проверете папка models/.
             </p>
 
         </div>
@@ -187,14 +244,13 @@ viewer.addEventListener('error',()=>{
 
 
 
+
 /* ---------------- CAMERA RESET ---------------- */
 
 
-let initialOrbit = '';
-
-let initialTarget = '';
-
-let initialFov = '';
+let initialOrbit = "";
+let initialTarget = "";
+let initialFov = "";
 
 
 
@@ -202,41 +258,45 @@ function saveInitialCamera(){
 
 
     initialOrbit =
-        viewer.getCameraOrbit().toString();
+    viewer.getCameraOrbit().toString();
 
 
     initialTarget =
-        viewer.cameraTarget.toString();
+    viewer.cameraTarget.toString();
 
 
     initialFov =
-        viewer.fieldOfView.toString();
+    viewer.fieldOfView.toString();
 
 
 }
 
 
 
-resetCameraBtn.addEventListener('click',()=>{
+
+resetCameraBtn.addEventListener(
+"click",
+()=>{
 
 
     if(!initialOrbit)
-        return;
+    return;
 
 
     viewer.cameraOrbit =
-        initialOrbit;
+    initialOrbit;
 
 
     viewer.cameraTarget =
-        initialTarget;
+    initialTarget;
 
 
     viewer.fieldOfView =
-        initialFov;
+    initialFov;
 
 
 });
+
 
 
 
@@ -249,27 +309,31 @@ let autoRotateEnabled = true;
 
 
 
-rotateBtn.addEventListener('click',()=>{
+rotateBtn.addEventListener(
+"click",
+()=>{
 
 
     autoRotateEnabled =
-        !autoRotateEnabled;
+    !autoRotateEnabled;
+
 
 
     viewer.autoRotate =
-        autoRotateEnabled;
+    autoRotateEnabled;
 
 
 
     rotateBtn.textContent =
-        autoRotateEnabled
-        ?
-        "Auto Rotate"
-        :
-        "Start Rotation";
+    autoRotateEnabled
+    ?
+    "Auto Rotate"
+    :
+    "Start Rotation";
 
 
 });
+
 
 
 
@@ -278,73 +342,39 @@ rotateBtn.addEventListener('click',()=>{
 /* ---------------- FULLSCREEN ---------------- */
 
 
-fullscreenBtn.addEventListener('click',async()=>{
-
-
-    try{
-
-
-        if(!document.fullscreenElement){
-
-
-            await document.documentElement.requestFullscreen();
-
-
-            fullscreenBtn.textContent =
-                "Exit Fullscreen";
-
-
-        }
-
-
-        else{
-
-
-            await document.exitFullscreen();
-
-
-            fullscreenBtn.textContent =
-                "Fullscreen";
-
-
-        }
-
-
-    }
-
-
-    catch(error){
-
-
-        console.error(
-            "Fullscreen error:",
-            error
-        );
-
-
-    }
-
-
-});
-
-
-
-document.addEventListener(
-'fullscreenchange',
-()=>{
+fullscreenBtn.addEventListener(
+"click",
+async()=>{
 
 
     if(!document.fullscreenElement){
 
 
+        await document.documentElement.requestFullscreen();
+
+
         fullscreenBtn.textContent =
-            "Fullscreen";
+        "Exit Fullscreen";
+
+
+    }
+
+
+    else{
+
+
+        await document.exitFullscreen();
+
+
+        fullscreenBtn.textContent =
+        "Fullscreen";
 
 
     }
 
 
 });
+
 
 
 
@@ -354,58 +384,28 @@ document.addEventListener(
 
 
 document.addEventListener(
-'keydown',
+"keydown",
 (e)=>{
 
 
     const key =
-        e.key.toLowerCase();
-
+    e.key.toLowerCase();
 
 
     if(key==="r")
-        resetCameraBtn.click();
-
+    resetCameraBtn.click();
 
 
     if(key==="a")
-        rotateBtn.click();
-
+    rotateBtn.click();
 
 
     if(key==="f")
-        fullscreenBtn.click();
+    fullscreenBtn.click();
 
 
 });
 
-
-
-
-
-/* ---------------- PAGE FADE ---------------- */
-
-
-window.addEventListener('load',()=>{
-
-
-    document.body.style.opacity="0";
-
-
-    requestAnimationFrame(()=>{
-
-
-        document.body.style.transition =
-            "opacity .4s ease";
-
-
-        document.body.style.opacity="1";
-
-
-    });
-
-
-});
 
 
 
@@ -415,16 +415,11 @@ window.addEventListener('load',()=>{
 
 
 console.log(
-
 "%cInteractive Photogrammetry Viewer",
-
 "color:#38BDF8;font-size:16px;font-weight:bold"
-
 );
 
 
 console.log(
-
-"Models loaded from GitHub Releases"
-
+"Models loaded from GitHub Pages"
 );
