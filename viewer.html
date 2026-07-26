@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interactive 3D Viewer</title>
+
+    <link rel="stylesheet" href="css/viewer.css">
+
+    <script type="module"
+        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+    </script>
+
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- Loading Screen -->
+    <!-- ========================= -->
+
+    <div id="loader">
+
+        <div class="spinner"></div>
+
+        <h2>Зареждане...</h2>
+
+        <p>Моля изчакайте докато моделът се зареди.</p>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Header -->
+    <!-- ========================= -->
+
+    <header class="topbar">
+
+        <div class="logo-section">
+
+            <div class="logo">
+
+                🧩
+
+            </div>
+
+            <div class="project-info">
+
+                <h1 id="modelTitle">
+
+                    3D Viewer
+
+                </h1>
+
+                <p>
+
+                    Interactive Photogrammetry Platform
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="toolbar">
+
+            <a href="index.html" class="btn">
+
+                ← Галерия
+
+            </a>
+
+            <button id="resetCamera" class="btn">
+
+                Reset Camera
+
+            </button>
+
+            <button id="rotateButton" class="btn">
+
+                Auto Rotate
+
+            </button>
+
+            <button id="fullscreenBtn" class="btn">
+
+                Fullscreen
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- ========================= -->
+    <!-- Main Layout -->
+    <!-- ========================= -->
+
+    <main class="viewer-layout">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <h2>Информация</h2>
+
+            <div class="info-card">
+
+                <h3>Модел</h3>
+
+                <p id="modelName">
+
+                    Зареждане...
+
+                </p>
+
+            </div>
+
+            <div class="info-card">
+
+                <h3>Формат</h3>
+
+                <p>
+
+                    GLB / glTF Binary
+
+                </p>
+
+            </div>
+
+            <div class="info-card">
+
+                <h3>Управление</h3>
+
+                <ul>
+
+                    <li>🖱 Ляв бутон - Завъртане</li>
+
+                    <li>🖱 Десен бутон - Преместване</li>
+
+                    <li>🖱 Колелце - Приближаване</li>
+
+                    <li>📱 Докосване - Управление</li>
+
+                </ul>
+
+            </div>
+
+            <div class="info-card">
+
+                <h3>Информация</h3>
+
+                <p>
+
+                    Този модел е създаден чрез
+                    фотограметрия и може да бъде
+                    разглеждан интерактивно
+                    директно в браузъра.
+
+                </p>
+
+            </div>
+
+        </aside>
+
+        <!-- Viewer -->
+
+        <section class="viewer-section">
+
+            <model-viewer
+
+                id="viewer"
+
+                src=""
+
+                alt="3D Model"
+
+                camera-controls
+
+                auto-rotate
+
+                shadow-intensity="1.2"
+
+                exposure="1"
+
+                environment-image="neutral"
+
+                interaction-prompt="auto"
+
+                touch-action="pan-y"
+
+                loading="eager">
+
+            </model-viewer>
+
+        </section>
+
+    </main>
+
+    <!-- ========================= -->
+    <!-- Bottom Status Bar -->
+    <!-- ========================= -->
+
+    <footer class="status-bar">
+
+        <div>
+
+            Status:
+            <span id="status">
+
+                Ready
+
+            </span>
+
+        </div>
+
+        <div>
+
+            Interactive Photogrammetry Viewer • 2026
+
+        </div>
+
+    </footer>
+
+    <!-- JavaScript -->
+
+    <script src="js/viewer.js"></script>
+
+</body>
+
+</html>

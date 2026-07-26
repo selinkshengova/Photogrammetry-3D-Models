@@ -1,0 +1,279 @@
+/* =========================================================
+   INTERACTIVE 3D VIEWER - viewer.css
+   Diploma Project 2026
+========================================================= */
+
+:root{
+    --bg:#0F172A;
+    --panel:#1E293B;
+    --panel-2:#243447;
+    --accent:#2563EB;
+    --accent-light:#38BDF8;
+    --text:#F8FAFC;
+    --text-muted:#CBD5E1;
+    --border:rgba(255,255,255,.10);
+    --glass:rgba(255,255,255,.08);
+    --shadow:0 20px 45px rgba(0,0,0,.35);
+    --radius:20px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    height:100%;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:
+        radial-gradient(circle at top,
+        #1E3A8A 0%,
+        #172554 35%,
+        #0F172A 100%);
+    color:var(--text);
+    overflow:hidden;
+}
+
+/* ---------------- Loader ---------------- */
+
+#loader{
+    position:fixed;
+    inset:0;
+    background:var(--bg);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    z-index:9999;
+    transition:opacity .5s ease;
+}
+
+.spinner{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    border:6px solid rgba(255,255,255,.12);
+    border-top-color:var(--accent-light);
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    to{ transform:rotate(360deg); }
+}
+
+#loader h2{
+    font-family:'Montserrat',sans-serif;
+    font-size:1.4rem;
+}
+
+#loader p{
+    color:var(--text-muted);
+}
+
+/* ---------------- Top Bar ---------------- */
+
+.topbar{
+    height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    background:rgba(15,23,42,.78);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.logo{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    font-size:1.3rem;
+    background:linear-gradient(135deg,var(--accent),var(--accent-light));
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+}
+
+.project-info h1{
+    font-family:'Montserrat',sans-serif;
+    font-size:1.15rem;
+    margin-bottom:2px;
+}
+
+.project-info p{
+    color:var(--text-muted);
+    font-size:.9rem;
+}
+
+.toolbar{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    outline:none;
+    cursor:pointer;
+    text-decoration:none;
+    color:white;
+    padding:11px 18px;
+    border-radius:14px;
+    font-weight:600;
+    background:linear-gradient(135deg,var(--accent),var(--accent-light));
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+    box-shadow:0 10px 22px rgba(37,99,235,.28);
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 32px rgba(37,99,235,.38);
+}
+
+/* ---------------- Layout ---------------- */
+
+.viewer-layout{
+    height:calc(100vh - 78px - 42px);
+    display:grid;
+    grid-template-columns:320px 1fr;
+}
+
+/* ---------------- Sidebar ---------------- */
+
+.sidebar{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(18px);
+    border-right:1px solid var(--border);
+    padding:28px;
+    overflow:auto;
+}
+
+.sidebar h2{
+    font-family:'Montserrat',sans-serif;
+    margin-bottom:22px;
+    font-size:1.5rem;
+}
+
+.info-card{
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:18px;
+}
+
+.info-card h3{
+    font-family:'Montserrat',sans-serif;
+    font-size:1rem;
+    margin-bottom:12px;
+}
+
+.info-card p,
+.info-card li{
+    color:var(--text-muted);
+    line-height:1.7;
+    font-size:.95rem;
+}
+
+.info-card ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+/* ---------------- Viewer ---------------- */
+
+.viewer-section{
+    position:relative;
+    background:
+        radial-gradient(circle at center,
+        rgba(56,189,248,.08),
+        transparent 60%);
+}
+
+model-viewer{
+    width:100%;
+    height:100%;
+    background:transparent;
+}
+
+/* ---------------- Status Bar ---------------- */
+
+.status-bar{
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+    background:rgba(15,23,42,.85);
+    border-top:1px solid var(--border);
+    font-size:.9rem;
+    color:var(--text-muted);
+}
+
+#status{
+    color:#22C55E;
+    font-weight:600;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width:1100px){
+    .viewer-layout{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar{
+        display:none;
+    }
+}
+
+@media (max-width:768px){
+    body{
+        overflow:auto;
+    }
+
+    .topbar{
+        height:auto;
+        padding:18px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:16px;
+    }
+
+    .toolbar{
+        width:100%;
+    }
+
+    .btn{
+        flex:1;
+        text-align:center;
+        justify-content:center;
+    }
+
+    .viewer-layout{
+        height:calc(100vh - 170px - 42px);
+    }
+
+    .status-bar{
+        flex-direction:column;
+        justify-content:center;
+        gap:2px;
+        height:56px;
+        text-align:center;
+    }
+}
